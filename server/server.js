@@ -20,7 +20,7 @@ app.use('/api', gameRouter)
 // Static file server
 app.use(Express.static('public'))
 
-// Start server listening on port 5000
-app.listen(5000, () => {
-  console.log('Listening on port 5000')
+// Start server listening on port 8000
+app.listen(8000, () => {
+  console.log('Listening on port 8000')
 })

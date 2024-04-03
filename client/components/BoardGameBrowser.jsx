@@ -1,21 +1,56 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
 import GameCard from './GameCard.jsx'
+import DetailsModal from './DetailsModal.jsx'
+
+import TableTopService from '../scripts/TableTopService.js'
 
 function BoardGameBrowser () {
+  const [games, setGames] = useState([])
+  const [selectedGame, setSelectedGame] = useState(null)
+  // so much more cumbersome than vue refs :/
+
+  useEffect(() => {
+    TableTopService.GetAllGames().then((games) => {
+      setGames(games)
+    })
+  }, [])
+
+  const handleOpenModal = (game) => {
+    TableTopService.GetGameById(game.ID).then((gameDetails) => {
+      console.log(gameDetails)
+      setSelectedGame(gameDetails)
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+    })
+  }
+
+  const handleCloseModal = () => {
+    setSelectedGame(null)
+    document.getElementsByTagName('body')[0].style.overflow = 'visible'
+  }
+
   return (
-    <div style={cardHolder} className="container">
+    <div className="container" style={container}>
       <div className="row">
-        <GameCard />
-        <GameCard />
-        <GameCard />
+        {games.map((game) => (
+          <GameCard
+            key={game.ID}
+            game={game}
+            openModal={() => handleOpenModal(game)}
+          /> // missing v-for's right about now
+        ))}
       </div>
+      {selectedGame
+        ? (
+          <DetailsModal
+            game={selectedGame}
+            closeModal={() => handleCloseModal()}
+          />
+          )
+        : null}
     </div>
   )
 }
-const cardHolder = {
-  margin: '1rem',
-  padding: '1rem'
-}
+
+const container = { marginTop: '2rem' }
 
 export default BoardGameBrowser

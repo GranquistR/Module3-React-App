@@ -50,7 +50,7 @@ dataRouter.get('/game', (req, res) => {
 // - Get methods, /game/[id] path, responds
 dataRouter.get('/game/:id', (req, res) => {
   // Search for the requested game
-  const gameID = req.params.id
+  const gameID = Number(req.params.id)
   const game = allFullGames.find((game) => game.ID === gameID)
   // If found, return the game, otherwise, return a 404
   if (!game) {

@@ -20,3 +20,14 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.descCutoff {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.Summary:hover {
+  transform: scale(1.05);
+}
