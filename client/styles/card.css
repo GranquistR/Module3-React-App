@@ -1,0 +1,22 @@
+.Summary {
+  border: 1px solid gray;
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 15px;
+  vertical-align: bottom;
+  background-color: #343638;
+  padding-bottom: 40px;
+  font-family: monospace;
+  height: 500px;
+}
+.Summary img {
+  max-width: 100%;
+}
+.titleCutoff {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
