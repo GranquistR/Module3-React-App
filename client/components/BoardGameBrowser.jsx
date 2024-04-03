@@ -17,7 +17,6 @@ function BoardGameBrowser () {
 
   const handleOpenModal = (game) => {
     TableTopService.GetGameById(game.ID).then((gameDetails) => {
-      console.log(gameDetails)
       setSelectedGame(gameDetails)
       document.getElementsByTagName('body')[0].style.overflow = 'hidden'
     })
