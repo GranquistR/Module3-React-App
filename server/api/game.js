@@ -111,7 +111,7 @@ dataRouter.put('/add', (req, res) => {
   }
 
   // Add the new game to the array
-  allFullGames.push(newGame)
+  allFullGames.unshift(newGame)
   // Respond with the newly added game
   res.status(201).json({ error: false, id: req.body.ID })
 })

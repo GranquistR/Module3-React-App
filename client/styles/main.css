@@ -3,3 +3,8 @@ body {
   background-color: #181818;
   color: white;
 }
+
+.addModalDialog {
+  transform: translate(-50%, 0) !important;
+  left: 45%;
+}
