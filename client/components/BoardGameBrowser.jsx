@@ -33,6 +33,10 @@ function BoardGameBrowser () {
     setGames([game, ...games])
   }
 
+  const removeGame = (id) => {
+    setGames(games.filter((game) => game.ID !== id))
+  }
+
   return (
     <div className="container" style={container}>
       <AddGameModal addGame={addGame} />
@@ -50,6 +54,10 @@ function BoardGameBrowser () {
           <DetailsModal
             game={selectedGame}
             closeModal={() => handleCloseModal()}
+            removeGame={(id) => {
+              handleCloseModal()
+              removeGame(id)
+            }}
           />
           )
         : null}

@@ -1,8 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import '../styles/DetailsModal.css'
+import TableTopService from '../scripts/TableTopService'
 
-function DetailsModal ({ game, closeModal }) {
+function DetailsModal ({ game, closeModal, removeGame }) {
+  const deleteGame = () => {
+    TableTopService.DeleteGame(game._id).then((response) => {
+      if (!response.error) {
+        removeGame(game._id)
+      }
+    })
+  }
+
   return (
     <div className="backdrop">
       <div
@@ -96,14 +105,26 @@ function DetailsModal ({ game, closeModal }) {
               </div>
             </div>
             <div className="modal-footer border-0">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-                onClick={closeModal}
+              <div
+                className="d-flex justify-content-between"
+                style={{ width: '100%' }}
               >
-                Close
-              </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={deleteGame}
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-bs-dismiss="modal"
+                  onClick={closeModal}
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -128,9 +149,11 @@ DetailsModal.propTypes = {
     Name: PropTypes.string,
     Publishers: PropTypes.arrayOf(PropTypes.string),
     YearReleased: PropTypes.number,
-    ID: PropTypes.number
+    ID: PropTypes.number,
+    _id: PropTypes.string
   }).isRequired,
-  closeModal: PropTypes.func.isRequired
+  closeModal: PropTypes.func.isRequired,
+  removeGame: PropTypes.func.isRequired
 }
 
 export default DetailsModal

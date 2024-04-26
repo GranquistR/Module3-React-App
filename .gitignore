@@ -5,3 +5,6 @@
 /public/index.css.map
 /public/index.js
 /public/index.js.map
+
+# Secret file
+secret.json

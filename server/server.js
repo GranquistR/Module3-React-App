@@ -2,7 +2,8 @@
 import Express from 'express'
 
 // Bring in the router for our Game API
-import gameRouter from './api/game.js'
+import gameRouter from './api/v1/game.js'
+import gameRouterV2 from './api/v2/game.js'
 
 // Make an express application
 const app = new Express()
@@ -15,7 +16,8 @@ app.use((req, res, next) => {
 })
 
 // Attach the game routes
-app.use('/api', gameRouter)
+app.use('/api/v1', gameRouter)
+app.use('/api/v2', gameRouterV2)
 
 // Static file server
 app.use(Express.static('public'))
